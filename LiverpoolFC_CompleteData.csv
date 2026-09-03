@@ -1,0 +1,5 @@
+player_id,name,position,age,nationality,jersey_number,contract_until,appearances,goals,assists,yellow_cards,red_cards,
+1,Mohamed Salah,Forward,32,Egypt,11,2025-06-30,30,22,10,2,0,
+2,Virgil van Dijk,Defender,33,Netherlands,4,2025-06-30,28,3,1,5,0,
+4,Alexis MacAllister,Midfielder,25,Argentina,5,2025-02-28,142,21,10,24,1,
+6,Luis Diaz,Forward,27,Columbian,22,2025-06-30,78,21,12,5,0,

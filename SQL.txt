@@ -1,0 +1,50 @@
+DROP DATABASE IF EXISTS liverpoolfc;
+CREATE DATABASE IF NOT EXISTS liverpoolfc;
+USE liverpoolfc;
+
+CREATE TABLE players (
+    player_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50),
+    position VARCHAR(20),
+    age INT,
+    nationality VARCHAR(30),
+    jersey_number INT,
+    contract_until DATE
+);
+
+CREATE TABLE player_statistics (
+    stat_id INT PRIMARY KEY AUTO_INCREMENT,
+    player_id INT,
+    appearances INT,
+    goals INT,
+    assists INT,
+    yellow_cards INT,
+    red_cards INT,
+    FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+
+-- Insert sample data
+INSERT INTO players (name, position, age, nationality, jersey_number, contract_until) VALUES
+('Mohamed Salah', 'Forward', 32, 'Egypt', 11, '2025-06-30'),
+('Virgil van Dijk', 'Defender', 33, 'Netherlands', 4, '2025-06-30');
+
+INSERT INTO player_statistics (player_id, appearances, goals, assists, yellow_cards, red_cards) VALUES
+(1, 30, 22, 10, 2, 0),
+(2, 28, 3, 1, 5, 0);
+
+-- Verifying the tables
+SELECT * FROM players;
+SELECT * FROM player_statistics;
+
+-- here I made a view so that the only thing that comes up is a players name and their stats. making sure view has a join.
+CREATE OR REPLACE VIEW player_stats_view AS
+SELECT 
+    p.name AS player_name,
+    s.appearances,
+    s.goals,
+    s.assists,
+    s.yellow_cards,
+    s.red_cards
+    FROM players JOIN player_statistics ON p.player_id = s.player_id;
+    
+SELECT * FROM player_stats_view;
